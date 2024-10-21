@@ -1,0 +1,112 @@
+[
+  {
+    "id":"abbf7db8-ea4d-4641-bb9f-38db56d5a04d",
+    "title": "Smartphone Samsung Galaxy S23 Ultra",
+    "description": "El smartphone más potente de Samsung con una cámara de 200MP.",
+    "code": "SM-S23U",
+    "price": 1299.99,
+    "status": true,
+    "stock": 7,
+    "category": "Electrónica",
+    "thumbnails": ["./imgs/samsung-s23-ultra.jpg"]
+  },
+  {
+    "id":"307b7974-e8b4-4e2b-a4de-614028d3c8d4",
+    "title": "Laptop MacBook Pro 16",
+    "description": "La laptop de Apple más potente para profesionales.",
+    "code": "MBP16",
+    "price": 2499.99,
+    "status": true,
+    "stock": 3,
+    "category": "Electrónica",
+    "thumbnails": ["./imgs/macbook-pro-16.jfif"]
+  },
+  {
+    "id":"0e34828b-3196-4f7f-a22e-3d5f4964ca6a",
+    "title": "Smart TV LG OLED C2",
+    "description": "Televisor OLED con una calidad de imagen excepcional.",
+    "code": "LG-C2",
+    "price": 1999.99,
+    "status": true,
+    "stock": 10,
+    "category": "Electrónica",
+    "thumbnails": ["./imgs/lg-oled-c2.webp"]
+  },
+  {
+    "id":"d3dfa8d1-8973-4fce-8c52-bf77fdb3cdb3",
+    "title": "Consola Xbox Series X",
+    "description": "La consola de nueva generación de Microsoft.",
+    "code": "XBOX-SX",
+    "price": 499.99,
+    "status": false,
+    "stock": 0,
+    "category": "Electrónica",
+    "thumbnails": ["./imgs/xbox-series-x.jfif"]
+  },
+  {
+    "id":"d7047cf4-044b-4a7d-85ea-b50e4f08777b",
+    "title": "Auriculares Bose QuietComfort 45",
+    "description": "Auriculares con cancelación de ruido líder en su clase.",
+    "code": "BOSE-QC45",
+    "price": 349.99,
+    "status": true,
+    "stock": 15,
+    "category": "Electrónica",
+    "thumbnails": ["./imgs/bose-quietcomfort-45.jfif"]
+  },
+  {
+    "id":"a2b50d84-e77d-41c1-b8ce-80fb8fd9990f",
+    "title": "Smartwatch Fitbit Sense 2",
+    "description": "Reloj inteligente con seguimiento avanzado de la salud.",
+    "code": "FITBIT-S2",
+    "price": 299.99,
+    "status": true,
+    "stock": 8,
+    "category": "Electrónica",
+    "thumbnails": ["./imgs/fibit-sense-2.jfif"]
+  },
+  {
+    "id":"375b169b-4d19-4ff5-9637-cf192e8d4c9c",
+    "title": "Proyector Epson Home Cinema 4010",
+    "description": "Proyector 4K para disfrutar del cine en casa.",
+    "code": "EPSON-4010",
+    "price": 1499.99,
+    "status": true,
+    "stock": 4,
+    "category": "Electrónica",
+    "thumbnails": ["./imgs/epson-home-cinema-4010.jfif"]
+  },
+  {
+    "id":"19d29370-9dcd-426c-9f6d-a9c0b0914c78",
+    "title": "Altavoz inteligente Google Nest Audio",
+    "description": "El asistente de Google con un sonido increíble.",
+    "code": "NEST-AUDIO",
+    "price": 99.99,
+    "status": true,
+    "stock": 20,
+    "category": "Electrónica",
+    "thumbnails": ["./imgs/google-nest-audio.jfif"]
+  },
+  {
+    "id":"ae2a6209-7c90-4a5f-8be2-a3d43ed5e49c",
+    "title": "Cámara de acción GoPro Hero11 Black",
+    "description": "La cámara de acción más potente y versátil de GoPro.",
+    "code": "GPHERO11",
+    "price": 499.99,
+    "status": true,
+    "stock": 6,
+    "category": "Electrónica",
+    "thumbnails": ["./imgs/gopro-hero-11-black.jfif"]
+  },
+  {
+    "id":"4805b8a0-a76d-4ac5-9c57-3d8e42cb48d5",
+    "title": "Impresora 3D Creality Ender 3",
+    "description": "Impresora 3D para crear tus propios objetos.",
+    "code": "ENDER-3",
+    "price": 299.99,
+    "status": true,
+    "stock": 12,
+    "category": "Electrónica",
+    "thumbnails": ["./imgs/impresora-3d-creality-ender-3.jfif"]
+  }
+]

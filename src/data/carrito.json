@@ -1,0 +1,19 @@
+[
+     {
+          "id": "test",
+          "products": [
+               {
+                    "id": "307b7974-e8b4-4e2b-a4de-614028d3c8d4",
+                    "quantity": 4
+               },
+               {
+                    "id": "abbf7db8-ea4d-4641-bb9f-38db56d5a04d",
+                    "quantity": 3
+               }
+          ]
+     },
+     {
+          "id": "c99db8bc-03fe-4759-83fe-2fa210f66bf2",
+          "products": []
+     }
+]
