@@ -1,6 +1,7 @@
 import { Router } from "express";
 import ProductManager from "../dao/ProductManager.js";
 import {errorProcessor} from "../utils/errorProcessor.js"
+import { io } from "../app.js"
 import { validateAttributes } from "../utils/validateAttributes.js";
 export const router = Router()
 
@@ -20,8 +21,7 @@ router.get('/',async (req,res)=>{
             limit=products.length
         }
         products = products.slice(0, limit)
-        return res.status(200).send(products)
-
+        return res.status(200).json(products)
     } catch (error) {
         errorProcessor(res, error, "server")
     }
@@ -60,6 +60,7 @@ router.post('/',async (req,res)=>{
         let attributesValidated = validateAttributes(res, {code, ...newProduct})
         if(attributesValidated){
             let addedProduct = await productManager.addProduct({code, ...newProduct})
+            io.emit("productAdd", addedProduct)
             return res.status(201).send(addedProduct)
         }
     } catch (error) {
@@ -84,6 +85,7 @@ router.put('/:pid',async (req,res)=>{
         let attributesValidated = validateAttributes(res, {...productChanges})
         if(attributesValidated){
             let updatedProduct = await productManager.modifyProduct(originalProduct, {...productChanges})
+            io.emit("productChange", updatedProduct)
             return res.status(200).send(updatedProduct);
         }
     } catch (error) {
@@ -99,6 +101,7 @@ router.delete('/:pid',async (req,res)=>{
             return res.status(404).send({error:`no se ha encontrado el producto con id: ${pid}.`})
         }
         let deletedProduct = await productManager.deleteProduct(productById)
+        io.emit("productDelete", deletedProduct)
         return res.status(200).send(deletedProduct);
 
     } catch (error) {
