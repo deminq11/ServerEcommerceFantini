@@ -1,0 +1,8 @@
+<ul>
+    <div id="cartId" data-id="{{cart._id}}" hidden></div>
+    {{#each products}}
+    <li>
+        <div class="info"> {{product.title}} Cantidad :{{quantity}}</div>
+    </li>
+    {{/each}}
+</ul>
