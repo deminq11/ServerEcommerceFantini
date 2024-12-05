@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { create, read, readById, update, destroy } from "../../data/mongo/managers/carts.manager.js";
-import validateCartId from "../../middlewares/validateCartId.mid.js"
+import validateCartId from "../../middlewares/carts/validateCartId.mid.js"
 export const cartsView = Router()
 
 cartsView.get("/:cid", validateCartId, readCartById)

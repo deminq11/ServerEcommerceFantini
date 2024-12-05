@@ -1,5 +1,5 @@
 import { isValidObjectId } from "mongoose";
-import { readById } from "../data/mongo/managers/carts.manager.js"
+import { readById } from "../../data/mongo/managers/carts.manager.js"
 export default async function validateCartId(req, res, next) {
     try {
         const { cid } = req.params

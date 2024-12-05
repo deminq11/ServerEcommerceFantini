@@ -2,7 +2,7 @@ html{
     box-sizing: border-box;
     margin: 0px;
     padding: 0px;
-    font-size: 62.5%;  /* 1rem = 10px*/
+    font-size: 62.5%;  
   }
   
   body{
@@ -15,12 +15,10 @@ html{
     box-sizing: inherit;
   }
   
-  /* Estilos para el fondo de la página */
   body {
     background-color: #f2f2f2;
   }
   
-  /* Estilos para la fuente y tamaño de fuente */
   body, h3, h4, p, li, a, input {
     font-family: Arial, sans-serif;
     color: #333;

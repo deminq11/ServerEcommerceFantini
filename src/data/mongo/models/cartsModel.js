@@ -2,7 +2,8 @@ import mongoose from "mongoose";
 
 const cartSchema = new mongoose.Schema(
     {
-        products:{
+        user_id: { type: mongoose.Schema.Types.ObjectId, ref: "users", required: true },
+        products: {
             type: [
                 {
                     product: {
@@ -13,10 +14,14 @@ const cartSchema = new mongoose.Schema(
                 }
             ]
         },
+        state: { type: String, enum: ["reserved", "paid", "delivered"], default: "reserved" }
+
     },
-    {  versionKey: false, collection:"carts"}
+    {
+        collection: "carts"
+    }
 )
-cartSchema.pre("findOne", function(){
+cartSchema.pre("findOne", function () {
     this.populate("products.product")
 })
 const Cart = mongoose.model("carts", cartSchema)

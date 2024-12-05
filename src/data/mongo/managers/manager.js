@@ -12,7 +12,14 @@ class Manager {
             throw error
         }
     }
-
+    readByEmail = async (email) => {
+        try {
+            const one = await this.model.findOne({ email }).lean()
+            return one
+        } catch (error) {
+            throw error
+        }
+    }
     readById = async (id) => {
         try {
             const one = await this.model.findOne({ _id: id }).lean()
