@@ -1,0 +1,10 @@
+PORT= 3000
+MONGO_LINK="mongodb+srv://demian1541:z5MfgdaLBV7slTHT@cluster0.h9sgz.mongodb.net/server?retryWrites=true&w=majority&appName=Cluster0"
+SECRET_KEY="j0rg311"
+GOOGLE_EMAIL="mailing.bot2139@gmail.com"
+GOOGLE_PASS="aexd xcah zqjk yalh"
+
+ECOMMERCE_NAME="Platypus"
+FRONTEND_URL="http://localhost:5173"
+
+BASE_URL="http://localhost:3000"

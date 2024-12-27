@@ -1,5 +1,4 @@
 import { connect } from "mongoose"
-
 async function dbConnect() {
     try {
         connect(process.env.MONGO_LINK)

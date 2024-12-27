@@ -39,12 +39,3 @@ DELETE "api/cart/:cid",
 
 DELETE "api/cart/:cid/products/:pid", 
 Elimina el producto especificado por /:pid en el carrito especificado por /:cid, y retorna el carrrito actualizado.
-
-VIEW DE PRODUCTS Y CARTS 
-En el navegador al introducir las urls:
- http://localhost:3000/products, 
- Muestra una lista paginada de los products, con un boton para agregar a un carrito especifico.
- Además acepta los mismos querys que GET api/products, ?limit=x, ?page=x,(x = numero deseado, sin comillas) ?sort=-1/1(por determinado sortea price) o {"atributo": -1/1}, ?query= acepta cualquier filtro de mongo escrito en formato valido para JSON por ejemplo &query={"stock":{"$gt":"0"}}
-
-http://localhost:3000/carts/:cid,
- Muestra los contenidos del carrito especificado por /:cid

@@ -1,6 +1,6 @@
 import { Router } from "express"
 import { verifyTokenUtil } from "./jsonToken.js"
-import { readById } from "../data/mongo/managers/users.manager.js"
+import { readById } from "../dao/mongo/managers/users.manager.js"
 
 class CustomRouter {
     #router
@@ -20,9 +20,9 @@ class CustomRouter {
         res.json200 = (message, response) => res.status(200).json({ message, response });
         res.json201 = (message, response) => res.status(201).json({ message, response });
         res.json400 = (message) => res.status(400).json({ error: 400, message });
-        res.json401 = () => res.status(401).json({ error: 401, message: "Bad Auth!" });
-        res.json403 = () => res.status(403).json({ error: 403, message: "Forbidden!" });
-        res.json404 = () => res.status(404).json({ error: 404, message: "Not found!" });
+        res.json401 = (message) => res.status(401).json({ error: 401, message: "Bad Auth!" || message });
+        res.json403 = (message) => res.status(403).json({ error: 403, message: "Forbidden!" || message });
+        res.json404 = (message) => res.status(404).json({ error: 404, message: "Not found!" || message });
         return next();
     }
     policies = (policies) => async (req, res, next) => {
@@ -40,6 +40,7 @@ class CustomRouter {
             if ((policies.includes("USER") && role === "USER") || (policies.includes("ADMIN") && role === "ADMIN")) {
                 const user = await readById(user_id)
                 if (!user) return res.json401()
+                if (!user.verify) return res.json401("USER NOT VERIFIED")
                 req.user = user
                 return next()
             }

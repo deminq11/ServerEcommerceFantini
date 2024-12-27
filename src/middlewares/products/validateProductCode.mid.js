@@ -1,4 +1,4 @@
-import { read } from "../../data/mongo/managers/products.manager.js"
+import { read } from "../../dao/mongo/managers/products.manager.js"
 export default async function validateCode(req,res,next){
     try {
         const codes = Array.isArray(req.body) ? req.body : [req.body.code];

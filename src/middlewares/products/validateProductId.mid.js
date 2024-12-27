@@ -1,5 +1,5 @@
 import { isValidObjectId } from "mongoose"
-import { readById } from "../../data/mongo/managers/products.manager.js"
+import { readById } from "../../dao/mongo/managers/products.manager.js"
 export default async function validateProductId(req,res,next){
     try {
         const { pid } = req.params
