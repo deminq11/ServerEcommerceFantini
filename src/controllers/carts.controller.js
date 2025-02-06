@@ -1,4 +1,4 @@
-import { readById as readProductById } from "../dao/mongo/managers/products.manager.js";
+import { readByIdService as readProductById } from "../services/products.service.js";
 import { createService, destroyService, readService, updateService } from "../services/carts.service.js";
 
 async function createCart(req, res, next) {

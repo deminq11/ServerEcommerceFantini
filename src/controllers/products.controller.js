@@ -1,5 +1,4 @@
-import { create, read, readById, update, destroy } from "../dao/mongo/managers/products.manager.js";
-import { createService, destroyService, readService, readServiceById, updateService } from "../services/products.service.js";
+import { createService, destroyService, readService, readByIdService, updateService } from "../services/products.service.js";
 
 async function readProducts(req, res, next) {
     let { limit, page, sort, query } = req.query
@@ -22,7 +21,7 @@ async function readProducts(req, res, next) {
 async function readProductsById(req, res, next) {
     const { pid } = req.params
     const message = "PRODUCT FOUND"
-    const response = await readServiceById(pid)
+    const response = await readByIdService(pid)
     return res.json200(message, response)
 
 }
