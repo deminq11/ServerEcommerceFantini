@@ -8,7 +8,6 @@ import PasswordResetForm from "./components/PasswordResetForm";
 // import CheckoutMenu from "./components/CheckoutMenu"
 
 function App() {
-  console.log(import.meta.env.VITE_API_URL)
   return (
     <>
       <NavBar/>
