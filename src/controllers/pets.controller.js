@@ -34,26 +34,20 @@ const deletePet = async (req, res) => {
     return res.json200(message, response)
 }
 
-// const createPetWithImage = async(req,res) =>{
-//     const file = req.file
-//     const {name,specie,birthDate} = req.body
-//     if(!name||!specie||!birthDate) return res.status(400).send({status:"error",error:"Incomplete values"})
-//     console.log(file)
-//     const pet = PetDTO.getPetInputFrom({
-//         name,
-//         specie,
-//         birthDate,
-//         image:`${__dirname}/../public/img/${file.filename}`
-//     })
-//     console.log(pet)
-//     const message = "PET WITH IMAGE CREATED"
-//     const response = await createService(pet)
-//     res.json201(message, response)
-// }
-export {
-    getAllPets,
-    createPet,
-    updatePet,
-    deletePet,
-    // createPetWithImage
+const createPetWithImage = async (req, res) => {
+    const file = req.file
+    const { name, specie, birthDate } = req.body
+    if (!name || !specie || !birthDate) {
+        return res.json400("MISSING VALUES IN BODY")
+    }
+    const pet = PetDTO.getPetInputFrom({
+        name,
+        specie,
+        birthDate,
+        image: `${__dirname}/../public/img/${file.filename}`
+    })
+    const message = "PET WITH IMAGE CREATED"
+    const response = await createService(pet)
+    res.json201(message, response)
 }
+export { getAllPets, createPet, updatePet, deletePet, createPetWithImage }
