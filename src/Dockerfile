@@ -2,11 +2,11 @@ FROM node:23-slim
 
 WORKDIR /ServerEcommerce
 
-COPY package*.json ./
+COPY src/package*.json ./
 
 RUN npm ci --omit-dev
 
-COPY . .
+COPY src/ .
 
 EXPOSE 8080
 
