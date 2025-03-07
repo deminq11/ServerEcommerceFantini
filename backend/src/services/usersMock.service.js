@@ -1,5 +1,5 @@
-import { createService as createUsers } from "../services/users.service.js";
-import { createService as createPets } from "../services/pets.service.js"
+import { createService as createUsers } from "./users.service.js";
+import { createService as createPets } from "./pets.service.js"
 import generateMockUsers from "../mocks/generateMockUsers.js"
 import generateMockPets from "../mocks/generateMockPets.js"
 const mockService = async (users = 50, pets = null) => {

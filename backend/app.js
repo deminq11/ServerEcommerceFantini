@@ -1,12 +1,12 @@
-import "dotenv/config.js"
+import "dotenv/config"
 import express from 'express'
-import { indexRouter } from './routes/index.router.js';
-import pathHandler from "./middlewares/pathHandler.mid.js"
-import errorHandler from './middlewares/errorHandler.mid.js';
+import { indexRouter } from './src/routes/index.router.js';
+import pathHandler from "./src/middlewares/pathHandler.mid.js"
+import errorHandler from './src/middlewares/errorHandler.mid.js';
 import cookieParser from "cookie-parser";
 import cors from "cors"
 import morgan from "morgan";
-import dbConnect from "./utils/dbConnect.js"
+import dbConnect from "./src/utils/dbConnect.js"
 
 const app=express();
 

@@ -1,12 +1,12 @@
 FROM node:23-slim
 
-WORKDIR /ServerEcommerce
+WORKDIR /app
 
-COPY src/package*.json ./
+COPY backend/package*.json ./
 
 RUN npm ci --omit-dev
 
-COPY src/ .
+COPY backend/ .
 
 EXPOSE 8080
 

@@ -2,11 +2,11 @@ FROM node:23-slim
 
 WORKDIR /app
 
-COPY front/package*.json ./
+COPY frontend/package*.json ./
 
 RUN npm install
 
-COPY front/ .
+COPY frontend/ .
 
 RUN npm run build
 
