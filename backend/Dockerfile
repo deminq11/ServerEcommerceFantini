@@ -2,11 +2,11 @@ FROM node:23-slim
 
 WORKDIR /app
 
-COPY backend/package*.json ./
+COPY package*.json ./
 
 RUN npm ci --omit-dev
 
-COPY backend/ .
+COPY . .
 
 EXPOSE 8080
 
