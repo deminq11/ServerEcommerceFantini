@@ -18,7 +18,7 @@ export default function VerificationPopUp({ popUp, setPopUp }) {
     try {
       setError(null)
       if(type === "verification"){
-        const url = `${import.meta.env.VITE_API_URL}/auth/verify`
+        const url = `${import.meta.env.VITE_API_URL}/api/auth/verify`
         const verifyClientCode = formData.code
         const body = { email , verifyClientCode }
         const {data} = await axios.post(url, body)
@@ -29,7 +29,7 @@ export default function VerificationPopUp({ popUp, setPopUp }) {
         handleClosePopUp()
         navigate("/")
       }else if(type === "password-reset"){
-        const url = `${import.meta.env.VITE_API_URL}/auth/send-password-reset`
+        const url = `${import.meta.env.VITE_API_URL}/api/auth/send-password-reset`
         const body = {email: formData.email}
         const {data} = await axios.post(url, body)
         console.log(data)
@@ -53,7 +53,7 @@ export default function VerificationPopUp({ popUp, setPopUp }) {
   }
   const handleResend = async () => {
     try {
-      const url = `${import.meta.env.VITE_API_URL}/auth/resend-verify-code`
+      const url = `${import.meta.env.VITE_API_URL}/api/auth/resend-verify-code`
       const body = { email }
       const response = await axios.post(url, body)
       if (response.ok) {

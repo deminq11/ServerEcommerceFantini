@@ -9,7 +9,7 @@ export default function UserProvider({ children }) {
     }, []);
     const checkUser = async () => {
         try {
-            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/auth/current`, { withCredentials: true })
+            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/auth/current`, { withCredentials: true })
             if (data.message === "ONLINE") {
                 setUser(data.response)
             }
@@ -19,7 +19,7 @@ export default function UserProvider({ children }) {
     }
     const signOut = async () => {
         try {
-            const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/auth/signout`, {}, { withCredentials: true })
+            const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/signout`, {}, { withCredentials: true })
             if (data.response === "OK") {
                 setUser(null)
                 checkUser()
@@ -30,7 +30,7 @@ export default function UserProvider({ children }) {
     }
     const signIn = async (body) => {
         try {
-            const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/auth/login`, body, { withCredentials: true })
+            const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/login`, body, { withCredentials: true })
             if (data.response === "OK") {
                 setUser(null)
                 checkUser()

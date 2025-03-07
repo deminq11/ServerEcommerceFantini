@@ -24,7 +24,7 @@ export default function LoginForm() {
     try {
       setError(null)
       if (isRegisterMode) {
-        const url = `${import.meta.env.VITE_API_URL}/auth/register`
+        const url = `${import.meta.env.VITE_API_URL}/api/auth/register`
         const body = data
         await axios.post(url, body)
         setSuccessMessage("Se ha registrado exitosamente, verifique su email...")
