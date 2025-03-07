@@ -13,7 +13,7 @@ export default function PasswordResetForm() {
   const onSubmit = async (data) => {
     try {
       setError(null)
-      const url = `http://localhost:3000/api/auth/reset-password/${resetToken}`
+      const url = `${import.meta.env.VITE_API_URL}/auth/reset-password/${resetToken}`
       if(data.confirmPassword === data.password){
         const password = data.confirmPassword 
         const body = {password}
