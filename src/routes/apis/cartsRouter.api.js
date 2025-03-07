@@ -16,7 +16,7 @@ class CartsApiRouter extends CustomRouter {
         this.update("/:cid", ["USER", "ADMIN"], validateCartId, validateAttributes, updateCart)
         this.update("/:cid/products/:pid", ["USER", "ADMIN"], validateCartId, validateProductId, updateCartProdQuantity)
         this.destroy("/:cid", ["USER", "ADMIN"], validateCartId, emptyCart)
-        // this.destroy("/:cid", ["ADMIN"], validateCartId, destroyCart)
+        this.destroy("/destroy/:cid", ["ADMIN"], validateCartId, destroyCart)
         this.destroy("/:cid/products/:pid", ["USER", "ADMIN"], validateCartId, validateProductId, deleteCartProduct)
     }
 }
