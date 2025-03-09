@@ -12,7 +12,7 @@ RUN npm run build
 
 FROM nginx:alpine
 
-ENV VITE_API_URL = https://serverecommercefantini-dev.up.railway.app
+ENV VITE_API_URL="https://serverecommercefantini-dev.up.railway.app"
 
 COPY --from=builder /app/dist /usr/share/nginx/html
 
