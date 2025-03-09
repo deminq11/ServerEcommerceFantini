@@ -65,7 +65,6 @@ passport.use(
                 }
                 const data = {
                     user_id: user._id,
-                    role: user.role,
                 }
                 const token = createTokenUtil(data)
                 user.token = token

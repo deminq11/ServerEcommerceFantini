@@ -34,6 +34,7 @@ describe('Adoptions API Router Integration', () => {
         user = await User.create({
             name: 'Pepito',
             email: 'pepito@example.com',
+            role: "ADMIN",
             password: 'pepi123',
             verifyCode: '123',
             verify: true
@@ -52,7 +53,7 @@ describe('Adoptions API Router Integration', () => {
 
     describe("GET /api/adoptions", () => {
         it('should return all adoptions', async () => {
-            verifyTokenUtil.mockReturnValue({ role: 'ADMIN', user_id: user._id.toString() })
+            verifyTokenUtil.mockReturnValue({ user_id: user._id.toString() })
             const adoption1 = await Adoption.create({})
             const adoption2 = await Adoption.create({})
             const response = await request(app)
@@ -74,7 +75,7 @@ describe('Adoptions API Router Integration', () => {
 
     describe("GET /api/adoptions/:aid", () => {
         it('should return the correct adoption', async () => {
-            verifyTokenUtil.mockReturnValue({ role: 'ADMIN', user_id: user._id.toString() })
+            verifyTokenUtil.mockReturnValue({ user_id: user._id.toString() })
             const adoption1 = await Adoption.create({})
             const adoptionId = adoption1._id.toString()
             const response = await request(app)
@@ -88,7 +89,7 @@ describe('Adoptions API Router Integration', () => {
 
     describe("POST /api/adoptions", () => {
         it('should create a new adoption', async () => {
-            verifyTokenUtil.mockReturnValue({ role: 'ADMIN', user_id: user._id.toString() })
+            verifyTokenUtil.mockReturnValue({ user_id: user._id.toString() })
             const pet = await Pet.create({
                 name: 'Pistachito',
                 specie: 'Pseudorca crassidens'

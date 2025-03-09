@@ -2,12 +2,16 @@ BACKEND:
 -
 PORT= 8080
 MONGO_LINK="mongodb+srv://demian1541:z5MfgdaLBV7slTHT@cluster0.h9sgz.mongodb.net/server?retryWrites=true&w=majority&appName=Cluster0"
+#jwt key:
 SECRET_KEY="0e9935ad3632c2a621229b23da5dd910ff22f43142f8eaeb3635d2e84b8e9e5cc97ec718b29cfb28140893763e41101342bd75a9f6b2b1975fc96678f5c5aa5584c7214bcf28c270c87b1dff5ab2ac777cb1df13e8a6cea5c07fc56a45bcf33a54540bb486dec5058d3ff0d38eda547f4c1ce2b6dd2df7332a878ff460ceb2b1a93d145816340b5bbf73a404d8a0810e4a8b13b47750a7291c25d69668f94297d3436a9860dbc00cfcee23dc3e3f7c18e1ced22e49841395f1f94b88d3d4d2b6187693cc803cf935de875c35835d6f6db703f74774a8a0c68c9d836138e39e97911e9a69afb569553d340200cbfc3bdc90df5dd4604b4f4d3d3bd4acdf8a8b4f"
+#node-mailer email:
 GOOGLE_EMAIL="mailing.bot2139@gmail.com"
+#node-mailer password:
 GOOGLE_PASS="aexd xcah zqjk yalh"
 
----
+-----
 FRONTEND:
 -
+#backend api url:
 VITE_API_URL = "http://localhost:8080/api"
 

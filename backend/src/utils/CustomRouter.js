@@ -33,12 +33,12 @@ class CustomRouter {
                 return res.json401()
             }
             const data = verifyTokenUtil(token)
-            const { role, user_id } = data
-            if (!role || !user_id) {
+            const { user_id } = data
+            if (!user_id) {
                 return res.json401("UNVALID TOKEN")
             }
-            if ((policies.includes("USER") && role === "USER") || (policies.includes("ADMIN") && role === "ADMIN")) {
-                const user = await readById(user_id)
+            const user = await readById(user_id)
+            if ((policies.includes("USER") && user.role === "USER") || (policies.includes("ADMIN") && user.role === "ADMIN")) {
                 if (!user) return res.json401("USER NOT FOUND")
                 if (!user.verify) return res.json401("USER NOT VERIFIED")
                 req.user = user

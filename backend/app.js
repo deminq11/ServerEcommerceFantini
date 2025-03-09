@@ -8,6 +8,7 @@ import cors from "cors"
 import morgan from "morgan";
 import dbConnect from "./src/utils/dbConnect.js"
 
+
 const app=express();
 
 app.use(express.json({ limit: '10kb' }));

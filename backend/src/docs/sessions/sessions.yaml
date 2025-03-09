@@ -1,0 +1,202 @@
+info:
+  title: Sessions
+  version: 1.0.0
+tags:
+  - name: Sessions
+paths:
+  /api/auth/register:
+    post:
+      summary: Register a new user (Public).
+      tags: [Sessions]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+      responses:
+        '201':
+          description: User registered successfully.
+          content:
+            application/json:
+              schema:
+                type: string
+        '409':
+          description: User already exists.
+        '500':
+          description: Internal server error.
+  /api/auth/verify:
+    post:
+      summary: Verify a user's email (Public).
+      tags: [Sessions]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VerifyRequest'
+      responses:
+        '200':
+          description: User verified successfully.
+        '401':
+          description: User verification failed.
+  /api/auth/resend-verify-code:
+    post:
+      summary: Resend verification code (Public).
+      tags: [Sessions]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResendVerifyCodeRequest'
+      responses:
+        '200':
+          description: Verification code sent.
+        '401':
+          description: Code send failed.
+  /api/auth/login:
+    post:
+      summary: Log in a user (Public).
+      tags: [Sessions]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '200':
+          description: User logged in successfully.
+          headers:
+            Set-Cookie:
+              schema:
+                type: string
+              description: JWT token cookie.
+        '401':
+          description: Invalid credentials or user not verified.
+        '404':
+          description: User not found.
+        '409':
+          description: User already logged in.
+        '500':
+          description: Internal server error.
+  /api/auth/signout:
+    post:
+      summary: Sign out a user (User or Admin).
+      tags: [Sessions]
+      security:
+        - cookieAuth: []
+      responses:
+        '200':
+          description: User signed out successfully.
+          headers:
+            Set-Cookie:
+              schema:
+                type: string
+              description: Clear cookie.
+        '500':
+          description: Internal server error.
+  /api/auth/current:
+    get:
+      summary: Get current user (User or Admin).
+      tags: [Sessions]
+      security:
+        - cookieAuth: []
+      responses:
+        '200':
+          description: User found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+            description: User offline.
+  /api/auth/send-password-reset:
+    post:
+      summary: Send password reset email (Public).
+      tags: [Sessions]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendPasswordResetRequest'
+      responses:
+        '200':
+          description: Reset token generated.
+        '400':
+          description: Failed to generate reset token or missing email.
+  /api/auth/reset-password/{resetToken}:
+    post:
+      summary: Reset user password (Public).
+      tags: [Sessions]
+      parameters:
+        - name: resetToken
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResetPasswordRequest'
+      responses:
+        '200':
+          description: Password reset successful.
+        '400':
+          description: Password reset failed.
+components:
+  schemas:
+    RegisterRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+        name:
+          type: string
+    LoginRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+    VerifyRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        verifyClientCode:
+          type: string
+    ResendVerifyCodeRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+    SendPasswordResetRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+    ResetPasswordRequest:
+      type: object
+      properties:
+        password:
+          type: string
+    User:
+      $ref: '#/components/schemas/User'
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: token

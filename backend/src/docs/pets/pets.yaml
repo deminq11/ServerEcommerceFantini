@@ -1,0 +1,166 @@
+info:
+  title: Your API Title
+  version: 1.0.0
+tags:
+  - name: Pets
+paths:
+  /api/pets:
+    get:
+      summary: Get all pets (Public).
+      tags: [Pets]
+      responses:
+        '200':
+          description: Pets found.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Pet'
+    post:
+      summary: Create a new pet (Admin only).
+      tags: [Pets]
+      security:
+        - cookieAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pet'
+      responses:
+        '201':
+          description: Pet created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pet'
+        '400':
+          description: Bad request (e.g., missing values).
+        '401':
+            description: Unauthorized.
+        '403':
+            description: Forbidden.
+  /api/pets/withimage:
+    post:
+      summary: Create a new pet with an image (Admin only).
+      tags: [Pets]
+      security:
+        - cookieAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                specie:
+                  type: string
+                birthDate:
+                  type: string
+                  format: date
+                image:
+                  type: string
+                  format: binary
+      responses:
+        '201':
+          description: Pet with image created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pet'
+        '400':
+          description: Bad request (e.g., missing values).
+        '401':
+            description: Unauthorized.
+        '403':
+            description: Forbidden.
+  /api/pets/{uid}:
+    put:
+      summary: Update a pet (User or Admin).
+      tags: [Pets]
+      security:
+        - cookieAuth: []
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pet'
+      responses:
+        '200':
+          description: Pet updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pet'
+        '404':
+          description: Pet not found.
+        '400':
+          description: Bad Request.
+        '401':
+            description: Unauthorized.
+        '403':
+            description: Forbidden.
+    delete:
+      summary: Delete a pet (Admin only).
+      tags: [Pets]
+      security:
+        - cookieAuth: []
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Pet deleted successfully.
+        '404':
+          description: Pet not found.
+        '401':
+            description: Unauthorized.
+        '403':
+            description: Forbidden.
+components:
+  schemas:
+    Pet:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Pet's name.
+        specie:
+          type: string
+          description: Pet's species.
+        birthDate:
+          type: string
+          format: date
+          description: Pet's birth date.
+        adopted:
+          type: boolean
+          default: false
+          description: Indicates if the pet is adopted.
+        owner:
+          type: string
+          description: ID of the pet's owner (reference to users collection).
+        image:
+          type: string
+          description: URL to the pet's image.
+      required:
+        - name
+        - specie
+        - birthDate
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: token
