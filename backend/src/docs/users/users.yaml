@@ -1,0 +1,156 @@
+info:
+  title: Users
+  version: 1.0.0
+tags:
+  - name: Users
+paths:
+  /api/users:
+    post:
+      summary: Create a new user (Admin only).
+      tags: [Users]
+      security:
+        - cookieAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          description: User created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Bad request (e.g., invalid input).
+        '401':
+            description: Unauthorized.
+        '403':
+            description: Forbidden.
+    get:
+      summary: Get all users (Admin only).
+      tags: [Users]
+      security:
+        - cookieAuth: []
+      responses:
+        '200':
+          description: A list of users.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        '401':
+            description: Unauthorized.
+        '403':
+            description: Forbidden.
+  /api/users/{uid}:
+    put:
+      summary: Update a user (User or Admin).
+      tags: [Users]
+      security:
+        - cookieAuth: []
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: User updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: User not found.
+        '401':
+            description: Unauthorized.
+        '403':
+            description: Forbidden.
+    delete:
+      summary: Delete a user (User or Admin).
+      tags: [Users]
+      security:
+        - cookieAuth: []
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: User deleted successfully.
+        '404':
+          description: User not found.
+        '401':
+            description: Unauthorized.
+        '403':
+            description: Forbidden.
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        photo:
+          type: string
+          nullable: true
+          description: URL to the user's photo.
+        name:
+          type: string
+          description: User's full name.
+        pets:
+          type: array
+          items:
+            type: string
+          description: List of user's pets.
+        email:
+          type: string
+          format: email
+          description: User's email address.
+        password:
+          type: string
+          description: User's password (typically not returned in responses).
+        role:
+          type: string
+          enum:
+            - USER
+            - ADMIN
+            - PREM
+          default: USER
+          description: User's role.
+        isOnline:
+          type: boolean
+          default: false
+          description: Indicates if the user is online.
+        verifyCode:
+          type: string
+          description: Verification code for email verification.
+        verify:
+          type: boolean
+          default: false
+          description: Indicates if the user's email is verified.
+        resetToken:
+          type: string
+          nullable: true
+          description: Token for password reset.
+      required:
+        - email
+        - password
+        - verifyCode
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: token
