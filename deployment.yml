@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: kubecontainer
-        image: damian1112/serverfantini
+        image: damian1112/platypusbackend
         ports:
           - containerPort: 8080
         env:
