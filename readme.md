@@ -26,8 +26,9 @@ This repository contains a basic ecommerce project, including a frontend and bac
 
 1.  **Clone the repository:**
     ```bash
-    git clone [repository URL]
+    git clone [[repository URL](https://github.com/deminq11/ServerEcommerceFantini)]
     cd [repository directory]
+    npm i
     ```
 2.  **Docker (optional):**
     * Docker installed.
