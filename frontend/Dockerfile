@@ -14,7 +14,6 @@ RUN npm run build
 
 FROM nginx:alpine
 
-
 RUN echo "API URL: $VITE_API_URL"
 
 COPY --from=builder /app/dist /usr/share/nginx/html
