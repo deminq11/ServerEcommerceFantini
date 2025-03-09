@@ -8,11 +8,12 @@ RUN npm install
 
 COPY . .
 
+ENV VITE_API_URL="https://serverecommercefantini-dev.up.railway.app"
+
 RUN npm run build
 
 FROM nginx:alpine
 
-ENV VITE_API_URL="https://serverecommercefantini-dev.up.railway.app"
 
 RUN echo "API URL: $VITE_API_URL"
 
